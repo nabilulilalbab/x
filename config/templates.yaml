@@ -1,0 +1,69 @@
+engagement_templates:
+- Setuju banget! 💯
+- Menarik perspektifnya 🤔
+- Great insight! 👍
+- Feel you! Been there 😅
+- Thanks for sharing! 🙏
+- Relatable banget 😂
+facts:
+- Kuota di MyXL bisa 2x lebih mahal dari harga reseller loh!
+- Indonesia ada 370 juta user internet, 60%+ pakai kuota XL/Telkomsel!
+- Rata-rata orang Indonesia habis 10GB+ per bulan untuk streaming!
+faqs:
+- answer: Biasanya 1-5 menit setelah pembayaran diterima! Fast!
+  question: Berapa lama proses transfer kuota?
+- answer: Kuota reguler ada batasnya, unlimited bisa dipakai terus (ada FUP).
+  question: Apa bedanya kuota reguler dan unlimited?
+- answer: Yes! Garansi 100% uang kembali kalau proses gagal.
+  question: Bisa refund kalau gagal?
+locations:
+- Jakarta Selatan
+- Bandung
+- Surabaya
+- Yogyakarta
+- Semarang
+promo_templates:
+- media: media/promo/correlation_heatmap_MAKANAN.png
+  text: '🔥 KUOTA XL MURAH! 10GB cuma Rp25.000! Hemat 44% dari harga normal!📲 Order:
+    {wa_number}'
+- media: null
+  text: '📱 Stok ready! Kuota XL 25GB = Rp50.000 aja!Harga normal: Rp90.000Hemat: 44%!
+    💰Fast response: {wa_number}'
+- media: null
+  text: '⚡ PROMO HARI INI!Kuota XL 10GB diskon jadi Rp25.000!✅ Proses cepat 1-5 menit✅
+    Garansi uang kembaliOrder sekarang: {wa_number}'
+- media: null
+  text: '💰 Hemat banget! Kuota XL Unlimited cuma Rp75.000!Dari Rp150.000 jadi Rp75.000
+    🔥Buruan sebelum kehabisan!📲 WA: {wa_number}'
+- media: null
+  text: '🎯 FLASH SALE!Kuota XL 50GB = Rp100.000Hemat 40%!Limited stock!Order: {wa_number}'
+- media: null
+  text: '🔥 WEEKEND SALE! Kuota XL 10GB Rp25.000 aja!Proses otomatis 1-5 menit!WA:
+    {wa_number}'
+reviews:
+- Stabil banget, streaming lancar! 5/5 ⭐
+- Cepet, tapi kadang drop di jam sibuk. 4/5 ⭐
+- Overall bagus untuk WFH! 4.5/5 ⭐
+tips:
+- Matikan auto-play video di social media buat hemat kuota!
+- Download offline maps di Google Maps sebelum pergi, hemat kuota saat navigasi!
+- Gunakan mode data saver di browser untuk menghemat kuota!
+- Hindari update aplikasi pakai data seluler, tunggu WiFi!
+- Batasi kualitas streaming video di aplikasi, pilih 480p atau 360p!
+- Matikan background data untuk aplikasi yang jarang dipakai!
+- Gunakan mode hemat data di pengaturan HP!
+tutorials:
+- content: Ketik *123# atau buka aplikasi myXL. Simple! 📱
+  title: Cara cek kuota XL
+- content: 'APN: internet | Username: (kosongkan) | Password: (kosongkan)'
+  title: Setting APN XL agar internet cepat
+- content: 'Ketik kode paket ke 123. Example: XTRA10GB kirim ke 123'
+  title: Cara daftar paket XL via SMS
+value_templates:
+- '💡 Tips hemat kuota #{number}: {tip}Btw, kalau butuh kuota XL murah, DM aja ya!
+  📲'
+- '📊 Review sinyal XL di {location}: {review}Need kuota XL murah? Hit me up! 💬'
+- '🎓 Tutorial: {tutorial_title}{tutorial_content}Kalau kuota habis, order di sini
+  aja: {wa_number}'
+- '❓ FAQ: {question}Jawaban: {answer}Btw, jual kuota XL murah juga loh! Info: {wa_number}'
+- '🔥 Fun fact: {fact}Need kuota XL murah? Check profile! 👆'

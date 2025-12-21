@@ -1,0 +1,171 @@
+# ============================================
+# TWITTER BOT CONFIGURATION - AKRAB XL
+# ============================================
+
+account:
+  cookies_file: "cookies.json"
+  username: "@AkrabXLMurah"
+
+business:
+  product: "Kuota XL Akrab"
+  niche: "pulsa_kuota"
+  
+  # Contact
+  wa_number: "085876423783"
+  wa_link: "https://wa.me/6285876423783?text=Halo%20min%20mau%20order%20kuota%20XL%20Akrab"
+  
+  # Check area & kuota
+  check_kuota_url: "https://bendith.my.id/"
+  
+  # Important notes (untuk reference, tulis di template langsung)
+  notes:
+    - "Official, resmi, bergaransi"
+    - "Kuota Full Reguler"
+    - "Masa Aktif: 28-30 Hari"
+    - "Rewards tidak masuk? Tunggu 1x24 jam sebelum komplain"
+  
+  # Daftar harga (untuk reference saja, tulis langsung di template!)
+  # NEW: Harga tidak lagi dipakai di code, cuma untuk referensi manual
+  prices_reference:
+    - paket: "SuperMini"
+      harga: "45000"
+      harga_display: "Rp45.000"
+      harga_normal: "Rp65.000"
+      diskon: 31
+      kuota_area1: "13-15 GB"
+      kuota_area2: "15-17 GB"
+      kuota_area3: "20-22 GB"
+      kuota_area4: "30-32 GB"
+      
+    - paket: "Mini"
+      harga: "58000"
+      harga_display: "Rp58.000"
+      harga_normal: "Rp80.000"
+      diskon: 28
+      kuota_area1: "31.75-33.75 GB"
+      kuota_area2: "33.75-35.75 GB"
+      kuota_area3: "38.75-40.75 GB"
+      kuota_area4: "48.75-50.75 GB"
+      
+    - paket: "Big"
+      harga: "62000"
+      harga_display: "Rp62.000"
+      harga_normal: "Rp85.000"
+      diskon: 27
+      kuota_area1: "38-40 GB"
+      kuota_area2: "40-42 GB"
+      kuota_area3: "45-47 GB"
+      kuota_area4: "55-57 GB"
+      
+    - paket: "Jumbo V2"
+      harga: "72000"
+      harga_display: "Rp72.000"
+      harga_normal: "Rp95.000"
+      diskon: 24
+      kuota_area1: "50.5-52.5 GB"
+      kuota_area2: "52.5-54.5 GB"
+      kuota_area3: "57.5-59.5 GB"
+      kuota_area4: "67.5-69.5 GB"
+      
+    - paket: "Jumbo"
+      harga: "85000"
+      harga_display: "Rp85.000"
+      harga_normal: "Rp115.000"
+      diskon: 26
+      kuota_area1: "65 GB"
+      kuota_area2: "70 GB"
+      kuota_area3: "83 GB"
+      kuota_area4: "123 GB"
+      best_value: true  # Highlight paket terbaik
+      
+    - paket: "MegaBig"
+      harga: "96000"
+      harga_display: "Rp96.000"
+      harga_normal: "Rp130.000"
+      diskon: 26
+      kuota_area1: "88-90 GB"
+      kuota_area2: "90-92 GB"
+      kuota_area3: "95-97 GB"
+      kuota_area4: "105-107 GB"
+
+targets:
+  followers_30days: 500
+  engagement_rate_target: 0.02
+  daily_wa_messages_target: 3
+  daily_orders_target: 1
+
+ai:
+  enabled: true
+  api_url: "https://api.elrayyxml.web.id/api/ai/copilot"
+  timeout: 10
+  improve_prompt: |
+    Improve tweet ini menjadi lebih menarik dan casual untuk target audience mahasiswa/pekerja Indonesia.
+    
+    Requirements:
+    - Bahasa Indonesia casual tapi sopan
+    - Tidak overclaim atau berlebihan
+    - Maksimal 280 karakter
+    - Gunakan emoji yang tepat (max 3)
+    - Fokus pada value proposition
+    - Jangan tambahkan hashtag
+    
+    Original tweet: {tweet}
+    
+    Berikan HANYA improved tweet tanpa penjelasan tambahan.
+
+# Media settings
+media:
+  enabled: true
+  folder: "media/promo"
+  formats: ["jpg", "jpeg", "png", "mp4"]
+  max_size_mb: 15
+  use_random: true  # Random pilih gambar dari folder
+
+safety:
+  rate_limits:
+    tweets_per_hour: 5
+    tweets_per_day: 10
+    follows_per_hour: 5
+    follows_per_day: 15
+    likes_per_hour: 10
+    likes_per_day: 30
+    replies_per_hour: 5
+    replies_per_day: 10
+    retweets_per_day: 5
+    
+  delays:
+    min_delay: 10
+    max_delay: 30
+    after_tweet: [30, 60]
+    after_follow: [20, 45]
+    after_error: [60, 180]
+    
+  warnings:
+    follower_ratio_min: 0.1
+    engagement_rate_min: 0.01
+
+schedule:
+  timezone: "Asia/Jakarta"
+  enabled: true
+  
+  morning:
+    time: "08:00"
+    enabled: true
+    use_media: true  # Post dengan gambar di pagi
+    
+  afternoon:
+    time: "13:00"
+    enabled: true
+    use_media: false  # Post text only di siang
+    
+  evening:
+    time: "20:00"
+    enabled: true
+    use_media: true  # Post dengan gambar di malam
+
+dashboard:
+  enabled: true
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  secret_key: "change-this-to-random-string"

@@ -1,0 +1,181 @@
+# ============================================
+# TWEET TEMPLATES - AKRAB XL
+# ============================================
+
+# SISTEM BARU: Tulis full text langsung!
+# Variables yang tersedia (optional):
+# {wa_number} = Nomor WhatsApp
+# {wa_link} = Link WA dengan pre-filled text
+# {check_kuota_url} = Link cek area & kuota (https://bendith.my.id/)
+
+# Tips:
+# - Tulis tweet lengkap dengan paket & harga
+# - Bisa mix berbagai paket dalam satu list
+# - Setiap template bisa attach media berbeda
+# - Max 280 karakter (Twitter limit)
+
+promo_templates:
+  - text: "🔥 AKRAB FRESH XLA Jumbo!
+Cuma Rp85.000 aja!
+
+✅ Official & Bergaransi
+✅ Kuota 65-123 GB (tergantung area)
+✅ Full Reguler 28-30 hari
+
+Cek area: https://bendith.my.id/
+📲 Order: {wa_number}"
+    media: null
+  
+  - text: "📱 Paket SuperMini = Rp45.000!
+Kuota berbeda per area:
+• Area 1: 13-15 GB
+• Area 4: 30-32 GB
+
+Cek area kamu: https://bendith.my.id/
+Order: {wa_number}"
+    media: null
+  
+  - text: "⚡ PROMO AKRAB XL!
+Paket Mini hanya Rp58.000!
+
+Hemat 28% dari harga normal!
+Kuota: 31-50 GB (tergantung area)
+Masa aktif 28-30 hari
+
+Order sekarang: {wa_number}"
+    media: null
+  
+  - text: "🎯 Big XL Akrab = Rp62.000!
+
+✅ Resmi & Bergaransi
+✅ Kuota 38-57 GB (area 1-4)
+✅ Full Reguler
+✅ Proses Cepat
+
+Info & order: {wa_number}"
+    media: null
+  
+  - text: "💰 BEST VALUE! Jumbo Rp85.000!
+Kuota s/d 123 GB (area 4) 🔥
+
+Official resmi, kuota full reguler!
+Cek area: https://bendith.my.id/
+
+WA: {wa_number}"
+    media: null
+  
+  - text: "🔥 READY STOCK!
+Akrab MegaBig = Rp96.000
+Kuota: 88-107 GB (area 1-4)
+
+Official resmi, bergaransi!
+Cek kuota per area: https://bendith.my.id/
+
+Order: {wa_number}"
+    media: null
+  
+  - text: "📲 Jumbo V2 Akrab Fresh XLA
+Harga: Rp72.000
+Kuota: 50-69 GB (tergantung area)
+Masa aktif: 28-30 hari
+
+Bergaransi 100%!
+Order: {wa_number}"
+    media: null
+  
+  - text: "🎉 HEMAT 26%!
+Paket Jumbo dari Rp115.000 jadi Rp85.000! ⭐
+
+Kuota full reguler 65-123 GB
+Area 4 paling untung!
+
+Order: {wa_number}"
+    media: null
+
+promo_with_all_pakets:
+  - text: "🔥 DAFTAR HARGA AKRAB FRESH XLA
+
+SuperMini: Rp45.000
+Mini: Rp58.000
+Big: Rp62.000
+Jumbo V2: Rp72.000
+Jumbo: Rp85.000 ⭐ BEST VALUE
+MegaBig: Rp96.000
+
+Cek area: https://bendith.my.id/
+Order: {wa_number}"
+    media: null
+
+value_templates:
+  - "💡 Tips: {tip}\n\nBtw, butuh kuota XL Akrab murah? Cek bio! 📲"
+  
+  - "📊 Info XL: {fact}\n\nNeed kuota Akrab? DM aja! 💬"
+  
+  - "🎓 {tutorial_title}\n{tutorial_content}\n\nKalau kuota habis, order Akrab aja: {wa_number}"
+  
+  - "❓ {question}\n\nJawaban: {answer}\n\nJual kuota XL Akrab juga loh! Info: {wa_number}"
+  
+  - "⚡ Tahukah kamu?\nKuota Akrab beda-beda per area!\n\nArea 4 paling untung (kuota paling banyak!)\n\nCek area kamu: {check_kuota_url}"
+  
+  - "💰 Cara hemat kuota:\n{tip}\n\nDan belinya di Akrab Fresh XLA! Hemat double! 😎\n\nOrder: {wa_number}"
+
+engagement_templates:
+  - "Betul banget! 💯"
+  - "Setuju! 👍"
+  - "Thanks infonya! 🙏"
+  - "Relatable 😂"
+  - "Good point! 🤔"
+
+tips:
+  - "Matikan auto-play video di social media untuk hemat kuota!"
+  - "Gunakan WiFi untuk update aplikasi, jangan pakai data seluler!"
+  - "Mode data saver di browser bisa hemat sampai 50% kuota!"
+  - "Download offline content sebelum pergi, hemat kuota!"
+  - "Batasi kualitas streaming video, pilih 480p saja!"
+  - "Matikan background data untuk aplikasi yang jarang dipakai!"
+  - "Cek area XL kamu untuk tau dapat kuota berapa!"
+
+tutorials:
+  - title: "Cara cek kuota XL"
+    content: "Ketik *123# atau buka aplikasi myXL"
+    
+  - title: "Cara cek area XL kamu"
+    content: "Buka {check_kuota_url} dan masukkan nomor XL kamu"
+    
+  - title: "Kenapa kuota beda per area?"
+    content: "XL bagi Indonesia jadi 4 area. Area 4 (paling luar kota) dapat kuota paling banyak!"
+
+faqs:
+  - question: "Berapa lama proses?"
+    answer: "1-5 menit setelah transfer! Fast response!"
+    
+  - question: "Kenapa kuota saya lebih sedikit?"
+    answer: "Tergantung area. Cek di {check_kuota_url}. Area 1 (kota besar) dapat kuota paling sedikit."
+    
+  - question: "Rewards tidak masuk?"
+    answer: "Tunggu 1x24 jam dulu ya sebelum komplain. Biasanya masuk kok!"
+    
+  - question: "Garansi gak?"
+    answer: "100% garansi! Kalau gagal, uang kembali!"
+    
+  - question: "Masa aktif berapa?"
+    answer: "28-30 hari. Full reguler!"
+
+facts:
+  - "Kuota Akrab area 4 bisa 2-3x lebih banyak dari area 1!"
+  - "XL Akrab adalah paket resmi dari XL, bukan ilegal!"
+  - "Paket Jumbo area 4 bisa dapat 123 GB! Gila murah!"
+  - "Area 1: Jakarta, Surabaya, Bandung. Area 4: Daerah luar kota."
+
+locations:
+  - "Jakarta"
+  - "Surabaya"
+  - "Bandung"
+  - "Semarang"
+  - "Medan"
+  - "Makassar"
+
+reviews:
+  - "Paket Jumbo area 4 dapet 123GB! Worth it banget! 5/5 ⭐"
+  - "Akrab emang lebih murah dari MyXL. Recommended! 4.5/5 ⭐"
+  - "Official dan resmi, gak pernah gagal! 5/5 ⭐"

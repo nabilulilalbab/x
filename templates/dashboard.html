@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Bot Dashboard - Kuota XL</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Twitter Bot Dashboard</h1>
+            <p>Kuota XL Sales Automation</p>
+        </header>
+
+        <!-- Bot Control -->
+        <div class="bot-control">
+            <div class="status">
+                <span id="bot-status">●</span>
+                <span id="bot-status-text">Checking...</span>
+            </div>
+            <div class="controls">
+                <button id="btn-start" class="btn btn-success">▶ Start Bot</button>
+                <button id="btn-stop" class="btn btn-danger">■ Stop Bot</button>
+                <button id="btn-refresh" class="btn btn-secondary">🔄 Refresh</button>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Followers</h3>
+                <div class="stat-value" id="stat-followers">-</div>
+                <div class="stat-label">Current</div>
+            </div>
+            <div class="stat-card">
+                <h3>Today's Tweets</h3>
+                <div class="stat-value" id="stat-tweets">-</div>
+                <div class="stat-label">/ 10 limit</div>
+            </div>
+            <div class="stat-card">
+                <h3>Engagement Rate</h3>
+                <div class="stat-value" id="stat-engagement">-</div>
+                <div class="stat-label">Average</div>
+            </div>
+            <div class="stat-card">
+                <h3>Orders (7d)</h3>
+                <div class="stat-value" id="stat-orders">-</div>
+                <div class="stat-label">From Twitter</div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <h3>📈 Follower Growth (30 Days)</h3>
+                <canvas id="chart-growth"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>📊 Today's Activity</h3>
+                <canvas id="chart-activity"></canvas>
+            </div>
+        </div>
+
+        <!-- Tables Row -->
+        <div class="tables-row">
+            <div class="table-card">
+                <h3>🐦 Recent Tweets</h3>
+                <div id="recent-tweets" class="table-container"></div>
+            </div>
+            <div class="table-card">
+                <h3>🔍 Keyword Performance</h3>
+                <div id="keyword-performance" class="table-container"></div>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="log-card">
+            <h3>📝 Activity Log</h3>
+            <div id="activity-log" class="log-container"></div>
+        </div>
+
+        <!-- Manual Actions -->
+        <div class="actions-card">
+            <h3>⚙️ Manual Actions</h3>
+            <div class="actions-grid">
+                <button class="btn btn-primary" onclick="runSlot('morning')">Run Morning Slot</button>
+                <button class="btn btn-primary" onclick="runSlot('afternoon')">Run Afternoon Slot</button>
+                <button class="btn btn-primary" onclick="runSlot('evening')">Run Evening Slot</button>
+                <button class="btn btn-secondary" onclick="showConversionModal()">Add Conversion</button>
+            </div>
+        </div>
+
+        <!-- Configuration Editor -->
+        <div class="config-card">
+            <h3>⚙️ Configuration Editor</h3>
+            <div class="config-tabs">
+                <button class="tab-btn active" onclick="showConfigTab('settings')">Settings</button>
+                <button class="tab-btn" onclick="showConfigTab('templates')">Templates</button>
+                <button class="tab-btn" onclick="showConfigTab('keywords')">Keywords</button>
+            </div>
+            
+            <!-- Settings Tab -->
+            <div id="config-settings" class="config-tab active">
+                <div class="config-section">
+                    <h4>Business Settings</h4>
+                    <label>Product Name:</label>
+                    <input type="text" id="input-product-name" placeholder="Kuota XL Akrab">
+                    
+                    <label>WhatsApp Number:</label>
+                    <input type="text" id="input-wa-number" placeholder="08xxx-xxxx-xxxx">
+                    
+                    <label>WhatsApp Link:</label>
+                    <input type="text" id="input-wa-link" placeholder="https://wa.me/628xxx">
+                    
+                    <label>Check Kuota URL (Optional):</label>
+                    <input type="text" id="input-check-url" placeholder="https://bendith.my.id/">
+                    
+                    <h4>Prices & Products</h4>
+                    <div id="prices-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addPrice()">+ Add Price/Product</button>
+                    
+                    <p style="color: #666; font-size: 0.9em; margin-top: 20px;">
+                        💡 <strong>Tip:</strong> Upload media untuk promo templates di <strong>Templates Tab → Media Manager</strong>
+                    </p>
+                </div>
+                <button class="btn btn-success" onclick="saveSettings()">💾 Save Settings</button>
+            </div>
+            
+            <!-- Templates Tab -->
+            <div id="config-templates" class="config-tab">
+                <div class="config-section">
+                    <h4>📝 Promo Templates</h4>
+                    <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                        Edit tweet templates di bawah. Gunakan {wa_number} untuk nomor WhatsApp.
+                    </p>
+                    <div id="promo-templates-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addTemplate('promo')">+ Add Promo Template</button>
+                    
+                    <h4 style="margin-top: 30px;">📝 Value Templates</h4>
+                    <div id="value-templates-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addTemplate('value')">+ Add Value Template</button>
+                    
+                    <h4 style="margin-top: 30px;">💡 Tips</h4>
+                    <div id="tips-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addTip()">+ Add Tip</button>
+                    
+                    <hr style="margin: 30px 0; border: 1px solid #e5e7eb;">
+                    
+                    <div class="preview-section">
+                        <h4>🔍 Preview Tweet</h4>
+                        <textarea id="preview-input" rows="3" placeholder="Enter template to preview..."></textarea>
+                        <button class="btn btn-primary btn-sm" onclick="previewTweet()">🔍 Preview with AI</button>
+                        <div id="preview-output"></div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 4px;">
+                        <strong>📸 Media Management Available!</strong>
+                        <p style="margin: 5px 0 10px 0; font-size: 0.9em; color: #666;">
+                            Assign images/videos to promo templates using the dedicated Media Manager page.
+                        </p>
+                        <a href="/media" target="_blank" style="display: inline-block; padding: 8px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 0.9em;">
+                            🚀 Open Media Manager
+                        </a>
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="saveTemplates()">💾 Save Templates</button>
+            </div>
+            
+            <!-- Keywords Tab -->
+            <div id="config-keywords" class="config-tab">
+                <div class="config-section">
+                    <h4>High Intent Keywords</h4>
+                    <div id="high-keywords-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addKeyword('high')">+ Add Keyword</button>
+                    
+                    <h4>Medium Intent Keywords</h4>
+                    <div id="medium-keywords-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addKeyword('medium')">+ Add Keyword</button>
+                    
+                    <h4>Low Intent Keywords</h4>
+                    <div id="low-keywords-list"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="addKeyword('low')">+ Add Keyword</button>
+                </div>
+                <button class="btn btn-success" onclick="saveKeywords()">💾 Save Keywords</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Last updated: <span id="last-update">-</span></p>
+            <p>Auto-refresh every 30s</p>
+        </footer>
+    </div>
+
+    <!-- Conversion Modal -->
+    <div id="conversion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConversionModal()">&times;</span>
+            <h2>Add Conversion Data</h2>
+            <form id="conversion-form">
+                <label>WA Messages:</label>
+                <input type="number" id="input-messages" min="0" value="0">
+                
+                <label>Orders:</label>
+                <input type="number" id="input-orders" min="0" value="0">
+                
+                <label>Revenue (Rp):</label>
+                <input type="number" id="input-revenue" min="0" value="0" step="1000">
+                
+                <label>Notes:</label>
+                <textarea id="input-notes" rows="3"></textarea>
+                
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

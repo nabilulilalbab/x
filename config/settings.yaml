@@ -1,0 +1,95 @@
+account:
+  cookies_file: cookies.json
+  username: '@KuotaXLMurah'
+ai:
+  api_url: https://api.elrayyxml.web.id/api/ai/copilot
+  enabled: true
+  improve_prompt: 'Improve tweet ini menjadi lebih menarik dan casual untuk target
+    audience mahasiswa/pekerja Indonesia.
+
+
+    Requirements:
+
+    - Bahasa Indonesia casual tapi sopan
+
+    - Tidak overclaim atau berlebihan
+
+    - Maksimal 280 karakter
+
+    - Gunakan emoji yang tepat (max 3)
+
+    - Fokus pada value proposition
+
+    - Jangan tambahkan hashtag
+
+
+    Original tweet: {tweet}
+
+
+    Berikan HANYA improved tweet tanpa penjelasan tambahan.
+
+    '
+  timeout: 10
+business:
+  product: Kuota XL
+  niche: pulsa_kuota
+  wa_number: 085117557905
+  wa_link: https://wa.me/6285117557905?text=Halo%20min%20mau%20order%20kuota%20XL
+  check_kuota_url: ''  # Optional: URL untuk cek kuota
+dashboard:
+  debug: false
+  enabled: true
+  host: 0.0.0.0
+  port: 5000
+  secret_key: change-this-to-random-string
+media:
+  enabled: true
+  folder: media/promo
+  formats:
+  - jpg
+  - jpeg
+  - png
+  - mp4
+safety:
+  delays:
+    after_error:
+    - 60
+    - 180
+    after_follow:
+    - 20
+    - 45
+    after_tweet:
+    - 30
+    - 60
+    max_delay: 30
+    min_delay: 10
+  rate_limits:
+    follows_per_day: 15
+    follows_per_hour: 5
+    likes_per_day: 30
+    likes_per_hour: 10
+    replies_per_day: 10
+    replies_per_hour: 5
+    retweets_per_day: 5
+    tweets_per_day: 10
+    tweets_per_hour: 5
+  warnings:
+    engagement_rate_min: 0.01
+    follower_ratio_min: 0.1
+schedule:
+  afternoon:
+    enabled: true
+    time: '13:00'
+  enabled: true
+  evening:
+    enabled: true
+    time: '20:00'
+  morning:
+    enabled: true
+    time: 08:00
+  timezone: Asia/Jakarta
+targets:
+  daily_orders_target: 1
+  daily_wa_messages_target: 3
+  engagement_rate_target: 0.02
+  followers_30days: 500

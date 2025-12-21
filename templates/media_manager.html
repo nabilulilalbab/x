@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Manager - Twitter Bot</title>
+    <link rel="stylesheet" href="/static/css/media_manager.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📸 Media Manager</h1>
+                <p>Assign images to promo templates</p>
+            </div>
+            <a href="/" class="btn-back">← Back to Dashboard</a>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Side: Templates -->
+            <div class="templates-panel">
+                <h2>📝 Promo Templates</h2>
+                <p class="help-text">Click on a template to assign media</p>
+                
+                <div id="templates-list" class="templates-list">
+                    <!-- Templates will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Right Side: Media Gallery -->
+            <div class="media-panel">
+                <div class="media-header">
+                    <h2>📁 Media Library</h2>
+                    <div class="media-actions">
+                        <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                            📤 Upload Media
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadMediaGallery()">
+                            🔄 Refresh
+                        </button>
+                    </div>
+                    <input type="file" id="file-input" accept="image/*,video/*" style="display: none;" onchange="handleFileUpload(event)">
+                </div>
+
+                <div class="media-info" id="selected-template-info" style="display: none;">
+                    <strong>Selected:</strong> <span id="selected-template-text"></span>
+                </div>
+
+                <div id="media-gallery" class="media-gallery">
+                    <!-- Media items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar" id="status-bar" style="display: none;">
+            <span id="status-message"></span>
+        </div>
+    </div>
+
+    <script src="/static/js/media_manager.js"></script>
+</body>
+</html>
