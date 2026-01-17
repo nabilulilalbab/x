@@ -810,9 +810,9 @@ if __name__ == '__main__':
     print("=" * 60)
     print("🚀 Twitter Bot Dashboard V2 Starting...")
     print("=" * 60)
-    print("📊 Dashboard URL: http://0.0.0.0:5001")
+    print("📊 Dashboard URL: http://0.0.0.0:8281")
     print("⚙️  Debug mode: False")
     print("=" * 60)
     print("\nPress Ctrl+C to stop\n")
     
-    app.run(host='0.0.0.0', port=5001, debug=False)
+    app.run(host='0.0.0.0', port=8281, debug=False)

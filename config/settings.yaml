@@ -41,7 +41,7 @@ dashboard:
   debug: false
   enabled: true
   host: 0.0.0.0
-  port: 5000
+  port: 8280
   secret_key: change-this-to-random-string
 media:
   enabled: true

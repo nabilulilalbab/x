@@ -25,7 +25,7 @@ module.exports = {
       max_memory_restart: '500M',
       env: {
         FLASK_ENV: 'production',
-        PORT: 5000
+        PORT: 8280
       },
       error_file: 'data/logs/pm2-dashboard-error.log',
       out_file: 'data/logs/pm2-dashboard-out.log',
@@ -48,7 +48,7 @@ module.exports = {
       max_memory_restart: '500M',
       env: {
         FLASK_ENV: 'production',
-        PORT: 5001
+        PORT: 8281
       },
       error_file: 'data/logs/pm2-dashboard-v2-error.log',
       out_file: 'data/logs/pm2-dashboard-v2-out.log',
