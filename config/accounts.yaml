@@ -1,0 +1,22 @@
+accounts:
+- created_at: '2025-12-21T15:30:00'
+  description: Main kuota XL account
+  enabled: true
+  folder: accounts/account1_GrnStore4347
+  id: account1
+  name: GrnStore - Main
+  username: '@GrnStore4347'
+- created_at: '2025-12-21T16:45:33.015361'
+  description: ''
+  enabled: true
+  folder: accounts/account2_KorteksL43042
+  id: account2
+  name: promo akun2
+  username: '@KorteksL43042'
+settings:
+  global_rate_limit:
+    follows_per_hour: 20
+    likes_per_hour: 40
+    tweets_per_hour: 15
+  max_concurrent_accounts: 3
+version: '1.0'

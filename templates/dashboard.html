@@ -10,8 +10,20 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Twitter Bot Dashboard</h1>
-            <p>Kuota XL Sales Automation</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <h1>🚀 Twitter Bot Dashboard</h1>
+                    <p>Kuota XL Sales Automation</p>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a href="/accounts" class="btn btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                        🔀 Manage Accounts
+                    </a>
+                    <select id="account-switcher" class="account-switcher" onchange="switchAccount(this.value)" style="padding: 10px; border-radius: 6px; border: 2px solid #667eea; font-size: 14px; cursor: pointer;">
+                        <option value="">Single Account Mode</option>
+                    </select>
+                </div>
+            </div>
         </header>
 
         <!-- Bot Control -->
@@ -217,5 +229,75 @@
     </div>
 
     <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/dashboard_multi_account_patch.js"></script>
+    <script src="/static/js/dashboard_config_patch.js"></script>
+    <script>
+        // ============= Multi-Account Support =============
+        
+        // Global variable for current account (accessible by patch)
+        window.currentAccountId = '';
+        
+        // Load accounts for switcher
+        async function loadAccountSwitcher() {
+            try {
+                const response = await fetch('/api/accounts');
+                const data = await response.json();
+                
+                if (data.success && data.data.accounts.length > 0) {
+                    const switcher = document.getElementById('account-switcher');
+                    
+                    // Clear existing options except first
+                    while (switcher.options.length > 1) {
+                        switcher.remove(1);
+                    }
+                    
+                    // Add account options
+                    data.data.accounts.forEach(account => {
+                        const option = document.createElement('option');
+                        option.value = account.id;
+                        option.textContent = `${account.name} (${account.username})`;
+                        if (!account.enabled) {
+                            option.textContent += ' [Disabled]';
+                            option.style.color = '#999';
+                        }
+                        switcher.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading accounts:', error);
+            }
+        }
+        
+        // Switch account function (FUNCTIONAL!)
+        function switchAccount(accountId) {
+            console.log('🔄 Switching to account:', accountId || 'global');
+            
+            // Update global variable
+            window.currentAccountId = accountId;
+            
+            // Show switching message
+            const statusText = document.getElementById('bot-status-text');
+            if (statusText) {
+                statusText.textContent = 'Loading account data...';
+            }
+            
+            // Reload all dashboard data with new account
+            if (window.loadDashboard) {
+                window.loadDashboard().then(() => {
+                    console.log('✅ Dashboard reloaded for account:', accountId || 'global');
+                });
+            }
+            
+            // Reload config data if available
+            if (window.loadConfigData) {
+                window.loadConfigData();
+            }
+        }
+        
+        // Load account switcher on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAccountSwitcher();
+        });
+    </script>
 </body>
 </html>

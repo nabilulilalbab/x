@@ -1,6 +1,6 @@
 account:
   cookies_file: cookies.json
-  username: '@KuotaXLMurah'
+  username: '@testfff'
 ai:
   api_url: https://api.elrayyxml.web.id/api/ai/copilot
   enabled: true
@@ -33,10 +33,9 @@ ai:
 business:
   check_kuota_url: ''
   niche: pulsa_kuota
-  prices: []
   product: Kuota XL
-  wa_link: https://wa.me/6285117557905?text=Halo%20min%20mau%20order%20kuota%20XL
-  wa_number: 085117557905
+  wa_link: https://wa.me/62328743244234324?text=Halo%20min%20mau%20order%20kuota%20XL
+  wa_number: 0328743244234324
 dashboard:
   debug: false
   enabled: true

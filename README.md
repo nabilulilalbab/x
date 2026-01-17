@@ -2,6 +2,8 @@
 
 Bot promosi Twitter yang **AMAN**, **DINAMIS**, dan **AI-POWERED** untuk jualan kuota XL dan Kuota XL Akrab.
 
+> **📖 Dokumentasi lengkap**: [`docs/INDEX.md`](docs/INDEX.md) | **🚀 Deployment**: [`DEPLOYMENT.md`](DEPLOYMENT.md)**
+
 ## ✨ Features
 
 - ✅ **Template Dinamis** - Edit templates kapan saja tanpa restart
@@ -63,6 +65,8 @@ twitter-bot/
 ```
 
 ## 🚀 Quick Start
+
+> **📖 Panduan lengkap**: [`docs/QUICK_START.md`](docs/QUICK_START.md)
 
 ### 1. Installation
 
@@ -127,13 +131,35 @@ python dashboard.py
 
 ## 📖 Documentation
 
-Semua dokumentasi ada di folder `docs/`:
+### 🎯 Essential Guides
+- **📚 [Documentation Index](docs/INDEX.md)** - Central hub untuk semua dokumentasi
+- **⚡ [Quick Start](docs/QUICK_START.md)** - Setup bot dalam 10 menit
+- **🚀 [Deployment Guide](DEPLOYMENT.md)** - Deploy ke production dengan PM2
+- **📖 [User Guide](docs/guides/USAGE.md)** - Panduan penggunaan lengkap
 
-- **[USAGE.md](docs/USAGE.md)** - Panduan lengkap penggunaan
-- **[DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md)** - Architecture & design
-- **[CARA_PAKAI_AKRAB.md](docs/CARA_PAKAI_AKRAB.md)** - Config untuk XL Akrab
-- **[PANDUAN_UPLOAD_GAMBAR.md](docs/PANDUAN_UPLOAD_GAMBAR.md)** - Upload media guide
-- **[SOLUSI_ERROR_226.md](docs/SOLUSI_ERROR_226.md)** - Troubleshooting Twitter errors
+### 📁 Documentation Categories
+```
+docs/
+├── INDEX.md                    # 📚 Central documentation index
+├── QUICK_START.md              # ⚡ Quick setup guide
+├── deployment/                 # 🚀 Production deployment guides
+│   ├── PM2_DEPLOYMENT_GUIDE.md
+│   └── PM2_QUICK_START.md
+├── guides/                     # 📖 User guides & tutorials
+│   ├── USAGE.md
+│   ├── CARA_PAKAI_AKRAB.md
+│   ├── PANDUAN_TAMBAH_COOKIES.md
+│   └── PANDUAN_MEDIA_PROMO.md
+├── migration/                  # 🔄 Migration & multi-account
+│   └── MULTI_ACCOUNT_RUNNING_GUIDE.md
+├── technical/                  # 🔧 Technical documentation
+│   ├── NEW_TEMPLATE_SYSTEM.md
+│   └── DEVELOPMENT_PLAN.md
+└── reports/                    # 📊 Test results & reports
+    └── SAFETY_REPORT.md
+```
+
+**👉 Lihat semua dokumentasi**: [`docs/INDEX.md`](docs/INDEX.md)
 
 ## 🎯 Usage Examples
 
@@ -155,6 +181,9 @@ python main.py --run-once evening
 ```bash
 # Run as daemon (auto post 3x/day)
 python main.py --daemon
+
+# Or use PM2 for production (recommended)
+pm2 start ecosystem.config.js
 
 # Bot akan otomatis post di:
 # - 08:00 WIB (Pagi)
@@ -278,3 +307,40 @@ Private project - All rights reserved
 **Status:** ✅ Production Ready  
 **Last Updated:** 2025-12-21  
 **Version:** 1.0.0
+
+---
+
+## 🔀 MULTI-ACCOUNT SUPPORT
+
+Bot sekarang mendukung **multiple Twitter accounts** secara bersamaan!
+
+### Quick Setup
+
+```bash
+# 1. Start dashboard
+python dashboard.py
+
+# 2. Add account (browser: http://localhost:5000/accounts)
+Click "➕ Add Account"
+
+# 3. Add cookies
+python add_account_cookies.py
+
+# 4. Enable & Start via dashboard
+Toggle "Enabled" → Click "▶️ Start"
+```
+
+### Documentation
+- **Quick Guide**: `QUICK_GUIDE_MULTI_ACCOUNT.md`
+- **Cookies Guide**: `docs/PANDUAN_TAMBAH_COOKIES.md`
+- **Full Implementation**: `MULTI_ACCOUNT_IMPLEMENTATION_COMPLETE.md`
+
+### Features
+- ✅ Unlimited accounts support
+- ✅ Concurrent execution
+- ✅ Per-account configuration
+- ✅ Web-based management
+- ✅ Real-time monitoring
+- ✅ Error isolation
+- ✅ CLI & API support
+

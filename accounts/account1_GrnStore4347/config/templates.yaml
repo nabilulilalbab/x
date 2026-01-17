@@ -40,6 +40,53 @@ promo_templates:
 - media: null
   text: '🔥 WEEKEND SALE! Kuota XL 10GB Rp25.000 aja!Proses otomatis 1-5 menit!WA:
     {wa_number}'
+reply_templates:
+  empathy_based:
+  - 'Feel you! Kuota emang suka cepet habis ya 😅 Coba matikan notif app yang gak penting.
+    Kalau butuh kuota XL murah, bisa order di sini: {wa_number}'
+  - Same here! Makanya gw pakai mode hemat data + limit background refresh. Need kuota
+    XL murah? DM aja 💬
+  - 'Relatable banget 😂 Tips: monitoring usage lewat myXL app. Btw kalau mau kuota
+    XL harga reseller (lebih murah), cek profile!'
+  - Pernah ngalamin juga! Sekarang gw set limit data harian di HP. Kalau butuh kuota
+    murah, DM ya!
+  recommendation_based:
+  - Coba paket XL yang unlimited aja, lebih worth it kalau sering streaming. DM kalau
+    mau info harga 📲
+  - XL sinyal stabil dan harganya affordable kalau tau tempat belinya. DM kalau butuh
+    kuota murah!
+  - Kalau buat WFH mending ambil paket besar sekalian biar tenang. Ada kuota XL murah
+    nih, DM ya!
+  short_based:
+  - Setuju! Coba pakai WiFi public kalau di kafe/mall. Btw jual kuota XL murah loh,
+    DM kalau minat 😊
+  - Sama! Gw biasanya download video/music pas ada WiFi. Need kuota XL murah? Check
+    profile 👆
+  - True! Hindari browsing tanpa mode hemat data. Kalau butuh kuota XL harga reseller,
+    DM aja ya 📱
+  tips_based:
+  - Coba matikan auto-play video di app sosmed, lumayan hemat! Btw kalau butuh kuota
+    murah XL, DM aja 😊
+  - Pakai mode data saver di browser bisa hemat sampai 50% loh! Need kuota XL murah?
+    DM ya 📱
+  - Download offline maps dulu sebelum pergi, save banget kuotanya! Atau kalau butuh
+    kuota XL murah, cek profile 👆
+  - Batasi kualitas streaming ke 480p aja, gak beda jauh kok. Btw jual kuota XL murah
+    nih, DM kalau tertarik!
+  - Matikan background app refresh, boros kuota soalnya. Kalau butuh kuota XL murah,
+    DM ya!
+  - Hindari update app pakai data seluler, tunggu WiFi aja. Need kuota murah? Cek
+    profile 👆
+  tutorial_based:
+  - 'Setting APN XL: internet (username & password kosongkan). Fast banget! Need kuota
+    murah? DM 📲'
+  - 'Cek kuota XL: *123# atau myXL app. Btw jual kuota XL murah nih, info: {wa_number}'
+  - Download myXL app, bisa monitor usage real-time. Atau kalau butuh kuota murah,
+    DM aja!
+  - Ketik *123# terus pilih menu paket data. Simple! Kalau butuh kuota murah, DM ya
+    😊
+  - Clear cache browser secara rutin biar loading cepat dan hemat kuota. Need kuota
+    XL murah? Check profile!
 reviews:
 - Stabil banget, streaming lancar! 5/5 ⭐
 - Cepet, tapi kadang drop di jam sibuk. 4/5 ⭐
@@ -67,41 +114,3 @@ value_templates:
   aja: {wa_number}'
 - '❓ FAQ: {question}Jawaban: {answer}Btw, jual kuota XL murah juga loh! Info: {wa_number}'
 - '🔥 Fun fact: {fact}Need kuota XL murah? Check profile! 👆'
-
-# Reply templates for auto-commenting (value-first, soft-selling)
-reply_templates:
-  # Tips & Solutions (direct help)
-  tips_based:
-    - 'Coba matikan auto-play video di app sosmed, lumayan hemat! Btw kalau butuh kuota murah XL, DM aja 😊'
-    - 'Pakai mode data saver di browser bisa hemat sampai 50% loh! Need kuota XL murah? DM ya 📱'
-    - 'Download offline maps dulu sebelum pergi, save banget kuotanya! Atau kalau butuh kuota XL murah, cek profile 👆'
-    - 'Batasi kualitas streaming ke 480p aja, gak beda jauh kok. Btw jual kuota XL murah nih, DM kalau tertarik!'
-    - 'Matikan background app refresh, boros kuota soalnya. Kalau butuh kuota XL murah, DM ya!'
-    - 'Hindari update app pakai data seluler, tunggu WiFi aja. Need kuota murah? Cek profile 👆'
-  
-  # Empathy & Solutions (understand problem)
-  empathy_based:
-    - 'Feel you! Kuota emang suka cepet habis ya 😅 Coba matikan notif app yang gak penting. Kalau butuh kuota XL murah, bisa order di sini: {wa_number}'
-    - 'Same here! Makanya gw pakai mode hemat data + limit background refresh. Need kuota XL murah? DM aja 💬'
-    - 'Relatable banget 😂 Tips: monitoring usage lewat myXL app. Btw kalau mau kuota XL harga reseller (lebih murah), cek profile!'
-    - 'Pernah ngalamin juga! Sekarang gw set limit data harian di HP. Kalau butuh kuota murah, DM ya!'
-  
-  # Recommendations (suggest alternatives)
-  recommendation_based:
-    - 'Coba paket XL yang unlimited aja, lebih worth it kalau sering streaming. DM kalau mau info harga 📲'
-    - 'XL sinyal stabil dan harganya affordable kalau tau tempat belinya. DM kalau butuh kuota murah!'
-    - 'Kalau buat WFH mending ambil paket besar sekalian biar tenang. Ada kuota XL murah nih, DM ya!'
-  
-  # Short & Natural (quick replies)
-  short_based:
-    - 'Setuju! Coba pakai WiFi public kalau di kafe/mall. Btw jual kuota XL murah loh, DM kalau minat 😊'
-    - 'Sama! Gw biasanya download video/music pas ada WiFi. Need kuota XL murah? Check profile 👆'
-    - 'True! Hindari browsing tanpa mode hemat data. Kalau butuh kuota XL harga reseller, DM aja ya 📱'
-  
-  # Tutorial/How-to (provide solution)
-  tutorial_based:
-    - 'Setting APN XL: internet (username & password kosongkan). Fast banget! Need kuota murah? DM 📲'
-    - 'Cek kuota XL: *123# atau myXL app. Btw jual kuota XL murah nih, info: {wa_number}'
-    - 'Download myXL app, bisa monitor usage real-time. Atau kalau butuh kuota murah, DM aja!'
-    - 'Ketik *123# terus pilih menu paket data. Simple! Kalau butuh kuota murah, DM ya 😊'
-    - 'Clear cache browser secara rutin biar loading cepat dan hemat kuota. Need kuota XL murah? Check profile!'

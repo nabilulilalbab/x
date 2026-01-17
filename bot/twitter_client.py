@@ -205,6 +205,75 @@ class TwitterClient:
             self.db.log_activity('post_tweet', text[:50], False, str(e))
             return None
     
+    async def search_tweets(self, query: str, count: int = 20):
+        """
+        Search tweets by keyword
+        
+        Args:
+            query: Search query string
+            count: Number of tweets to return (default 20)
+            
+        Returns:
+            List of tweet objects
+        """
+        try:
+            self.db.log_activity('search_tweets', f'Query: {query}', True)
+            
+            # Use twikit's search
+            tweets = await self.client.search_tweet(query, product='Latest', count=count)
+            
+            logger.info(f"🔍 Found {len(tweets) if tweets else 0} tweets for '{query}'")
+            
+            return tweets if tweets else []
+            
+        except Exception as e:
+            logger.error(f"Error searching tweets: {e}")
+            self.db.log_activity('search_tweets', f'Failed: {str(e)}', False)
+            return []
+    
+    async def reply_to_tweet(self, tweet_id: str, reply_text: str) -> Optional[str]:
+        """
+        Reply to a specific tweet with safety checks
+        
+        Args:
+            tweet_id: ID of tweet to reply to
+            reply_text: Reply text content
+            
+        Returns:
+            Reply tweet ID if successful, None otherwise
+        """
+        if not self.limiter.can_perform('replies'):
+            logger.warning("Reply rate limit reached!")
+            return None
+        
+        try:
+            # Create reply tweet
+            reply = await self.client.create_tweet(
+                text=reply_text,
+                reply_to=tweet_id
+            )
+            
+            reply_id = reply.id
+            
+            # Record metrics
+            self.limiter.record_action('replies')
+            self.db.increment_activity('reply')
+            self.db.add_tweet(reply_id, reply_text, 'reply')
+            
+            self.db.log_activity('reply_tweet', f'Replied to {tweet_id}: {reply_text[:50]}...', True)
+            
+            logger.info(f"✅ Reply posted: {reply_id}")
+            
+            # Longer delay after reply (be more cautious)
+            await self.random_delay('after_like')
+            
+            return reply_id
+            
+        except Exception as e:
+            logger.error(f"Error replying to tweet {tweet_id}: {e}")
+            self.db.log_activity('reply_tweet', f'Failed: {str(e)}', False)
+            return None
+    
     async def upload_media_file(self, file_path: str) -> Optional[str]:
         """
         Upload media file and return media_id

@@ -738,3 +738,39 @@ footer p {
 .media-remove-btn:hover {
     background: #dc2626;
 }
+
+/* Multi-Account Switcher Styles */
+.account-switcher {
+    min-width: 250px;
+    background: white;
+    font-weight: 500;
+}
+
+.account-switcher:hover {
+    border-color: #5568d3;
+}
+
+.account-switcher:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Button Styles for Accounts Page */
+.btn-primary {
+    background: #667eea;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}

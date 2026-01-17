@@ -125,6 +125,36 @@ class Database:
             )
         """)
         
+        # Twitter accounts management
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS accounts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                display_name TEXT,
+                wa_number TEXT,
+                wa_link TEXT,
+                is_active BOOLEAN DEFAULT 1,
+                cookies_file TEXT,
+                notes TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        
+        # Tracking for replied tweets (prevent duplicate comments)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS commented_tweets (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                tweet_id TEXT NOT NULL,
+                tweet_author TEXT NOT NULL,
+                tweet_text TEXT,
+                our_reply_id TEXT,
+                our_reply_text TEXT,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(tweet_id)
+            )
+        """)
+        
         conn.commit()
         conn.close()
     
@@ -486,6 +516,204 @@ class Database:
         
         cursor.execute("""
             SELECT * FROM activity_log 
+            ORDER BY timestamp DESC 
+            LIMIT ?
+        """, (limit,))
+        
+        rows = cursor.fetchall()
+        conn.close()
+        
+        return [dict(row) for row in rows]
+    
+    # ============= ACCOUNTS MANAGEMENT =============
+    
+    def add_account(self, username: str, display_name: str = None, 
+                    wa_number: str = None, wa_link: str = None,
+                    cookies_file: str = None, notes: str = None) -> bool:
+        """Add a new Twitter account"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("""
+                INSERT INTO accounts (username, display_name, wa_number, wa_link, cookies_file, notes)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (username, display_name, wa_number, wa_link, cookies_file, notes))
+            
+            conn.commit()
+            conn.close()
+            return True
+        except sqlite3.IntegrityError:
+            return False  # Account already exists
+    
+    def get_accounts(self, active_only: bool = False) -> List[Dict]:
+        """Get all accounts"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        if active_only:
+            cursor.execute("SELECT * FROM accounts WHERE is_active = 1 ORDER BY username")
+        else:
+            cursor.execute("SELECT * FROM accounts ORDER BY username")
+        
+        rows = cursor.fetchall()
+        conn.close()
+        
+        return [dict(row) for row in rows]
+    
+    def get_account_by_id(self, account_id: int) -> Optional[Dict]:
+        """Get account by ID"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM accounts WHERE id = ?", (account_id,))
+        row = cursor.fetchone()
+        conn.close()
+        
+        return dict(row) if row else None
+    
+    def get_account_by_username(self, username: str) -> Optional[Dict]:
+        """Get account by username"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM accounts WHERE username = ?", (username,))
+        row = cursor.fetchone()
+        conn.close()
+        
+        return dict(row) if row else None
+    
+    def update_account(self, account_id: int, **kwargs) -> bool:
+        """Update account information"""
+        allowed_fields = ['display_name', 'wa_number', 'wa_link', 'is_active', 
+                          'cookies_file', 'notes']
+        
+        updates = []
+        values = []
+        
+        for field, value in kwargs.items():
+            if field in allowed_fields:
+                updates.append(f"{field} = ?")
+                values.append(value)
+        
+        if not updates:
+            return False
+        
+        updates.append("updated_at = CURRENT_TIMESTAMP")
+        values.append(account_id)
+        
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        query = f"UPDATE accounts SET {', '.join(updates)} WHERE id = ?"
+        cursor.execute(query, values)
+        
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        
+        return success
+    
+    def delete_account(self, account_id: int) -> bool:
+        """Delete an account"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("DELETE FROM accounts WHERE id = ?", (account_id,))
+        
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        
+        return success
+    
+    def toggle_account_status(self, account_id: int) -> bool:
+        """Toggle account active status"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            UPDATE accounts 
+            SET is_active = NOT is_active, 
+                updated_at = CURRENT_TIMESTAMP 
+            WHERE id = ?
+        """, (account_id,))
+        
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        
+        return success
+    
+    # ============= REPLIED TWEETS TRACKING =============
+    
+    def has_replied_to_tweet(self, tweet_id: str) -> bool:
+        """Check if we already replied to this tweet"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT 1 FROM commented_tweets WHERE tweet_id = ?", (tweet_id,))
+        result = cursor.fetchone()
+        conn.close()
+        
+        return result is not None
+    
+    def has_replied_to_author_today(self, author: str) -> bool:
+        """Check if we already replied to this author today"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            SELECT 1 FROM commented_tweets 
+            WHERE tweet_author = ? 
+            AND date(timestamp) = date('now')
+        """, (author,))
+        
+        result = cursor.fetchone()
+        conn.close()
+        
+        return result is not None
+    
+    def add_replied_tweet(self, tweet_id: str, tweet_author: str, tweet_text: str, 
+                          our_reply_id: str, our_reply_text: str) -> bool:
+        """Track a tweet we replied to"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("""
+                INSERT INTO commented_tweets (tweet_id, tweet_author, tweet_text, our_reply_id, our_reply_text)
+                VALUES (?, ?, ?, ?, ?)
+            """, (tweet_id, tweet_author, tweet_text, our_reply_id, our_reply_text))
+            
+            conn.commit()
+            conn.close()
+            return True
+        except sqlite3.IntegrityError:
+            return False  # Already exists
+    
+    def get_reply_count_today(self) -> int:
+        """Get number of replies posted today"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            SELECT COUNT(*) FROM commented_tweets 
+            WHERE date(timestamp) = date('now')
+        """)
+        
+        count = cursor.fetchone()[0]
+        conn.close()
+        
+        return count
+    
+    def get_recent_replies(self, limit: int = 10) -> List[Dict]:
+        """Get recent replies"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            SELECT * FROM commented_tweets 
             ORDER BY timestamp DESC 
             LIMIT ?
         """, (limit,))

@@ -1,0 +1,56 @@
+# ============================================
+# SEARCH KEYWORDS
+# Keywords untuk search & engagement
+# ============================================
+
+# High intent keywords (priority!)
+high_intent:
+  - "butuh kuota xl"
+  - "jual kuota xl"
+  - "kuota xl murah"
+  - "beli kuota xl"
+  - "kuota xl habis"
+  - "isi kuota xl"
+  - "cari kuota xl"
+
+# Medium intent keywords
+medium_intent:
+  - "kuota habis"
+  - "paket internet murah"
+  - "provider bagus"
+  - "xl atau telkomsel"
+  - "internet lemot"
+  - "paket data murah"
+
+# Low intent (awareness)
+low_intent:
+  - "rekomendasi provider"
+  - "paket internet unlimited"
+  - "hemat kuota"
+  - "tips internet"
+  - "wfh internet"
+
+# Location-based
+location_based:
+  - "kuota xl jakarta"
+  - "kuota xl surabaya"
+  - "kuota xl bandung"
+
+# Competitor mentions (engage with care!)
+competitor:
+  - "@myXL"
+  - "@officialXL"
+  - "myxl mahal"
+
+# User personas to target (for follow strategy)
+target_bio_keywords:
+  - "mahasiswa"
+  - "kuliah"
+  - "wfh"
+  - "remote"
+  - "freelance"
+  - "gamer"
+  - "mobile legend"
+  - "pubg"
+  - "content creator"
+  - "youtuber"

@@ -31,12 +31,11 @@ ai:
     '
   timeout: 10
 business:
-  check_kuota_url: ''
-  niche: pulsa_kuota
-  prices: []
   product: Kuota XL
-  wa_link: https://wa.me/6285117557905?text=Halo%20min%20mau%20order%20kuota%20XL
+  niche: pulsa_kuota
   wa_number: 085117557905
+  wa_link: https://wa.me/6285117557905?text=Halo%20min%20mau%20order%20kuota%20XL
+  check_kuota_url: ''  # Optional: URL untuk cek kuota
 dashboard:
   debug: false
   enabled: true
